@@ -1,0 +1,101 @@
+body {
+  padding-top: 94px;
+}
+
+.initial.search-area {
+  height: 100vh;
+  opacity: 1;
+}
+
+.initial form {
+  width: 50px;
+}
+
+.initial input {
+  display: none;
+}
+
+.initial .fa-btn {
+  background: white;
+  color: #07051a;
+}
+
+.search-area {
+  position: fixed;
+  z-index: 40;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  height: 78px;
+  width: 100%;
+  opacity: 0.95;
+  background: #07051a;
+  transition: height 500ms var(--timing-function);
+}
+
+form {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 500ms var(--timing-function);
+  width: 300px;
+  height: 50px;
+  background: white;
+  box-sizing: border-box;
+  border-radius: 25px;
+  border: 4px solid white;
+  padding: 5px;
+}
+
+input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 42.5px;
+  line-height: 30px;
+  outline: 0;
+  border: 0;
+  display: block;
+  font-size: 1em;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 0 20px;
+}
+
+.fa-btn {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 42.5px;
+  height: 42.5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  border: none;
+  background: #07051a;
+  color: white;
+  text-align: center;
+  font-size: 1.2em;
+  transition: all 500ms var(--timing-function);
+  cursor: pointer;
+}
+
+.initial form:hover,
+.initial form:focus-within {
+  width: 300px;
+  cursor: pointer;
+}
+
+.initial form:hover input,
+.initial input:focus {
+  display: block;
+}
+
+.initial form:hover .fa-btn,
+.initial form:focus-within .fa-btn {
+  background: #07051a;
+  color: white;
+}

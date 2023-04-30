@@ -4,11 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page title</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
   </head>
   <body>
+    <div class="search-area initial">
+      <form class="search-form" id="search-form">
+        <input
+          class="searchInput"
+          type="search"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <button type="submit" class="fa-btn">
+          <i class="fa fa-search"></i>
+          <!-- <svg class="search-icon" width="40" height="40">
+            <use href="./images/f002.svg"></use>
+          </svg> -->
+        </button>
+      </form>
+    </div>
+    <div class="gallery container">
+      <div class="gallery__overlay">
+        <svg width="16" height="16">
+          <use href="./images/icons.svg#heart"></use>
+        </svg>
+        <svg width="16" height="16">
+          <use href="./images/icons.svg#eye"></use>
+        </svg>
+        <svg width="16" height="16">
+          <use href="./images/icons.svg#download"></use>
+        </svg>
+        <svg width="16" height="16">
+          <use href="./images/icons.svg#chat"></use>
+        </svg>
+      </div>
+      <!-- Image cards -->
+    </div>
+    <div class="container" id="sentinel">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <!-- <include src="./partials/example.html"></include> -->
+    <script type="module" src="./index.js"></script>
   </body>
 </html>

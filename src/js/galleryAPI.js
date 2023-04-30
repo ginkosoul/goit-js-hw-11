@@ -45,10 +45,10 @@ export default class GalleryAPI{
         this.count += this.#params.per_page
     }
 
-    get query(){
+    get q(){
         return this.#params.q
     }
-    set query(text){
+    set q(text){
         this.#params.q = text.trim()
         this.#params.page = 1
         this.count = 0;

@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 export default class GalleryAPI{
-    static #API_KEY = '35837403-e3eb495b2214d16b5d801685b'
-    static #BASE_URL = 'https://pixabay.com/api/'
+    static API_KEY = '35837403-e3eb495b2214d16b5d801685b'
+    static BASE_URL = 'https://pixabay.com/api/'
     params = {}
 
     constructor(){
-        this.params.key = GalleryAPI.#API_KEY
+        this.params.key = GalleryAPI.API_KEY
         this.params.page = 1
         this.params.per_page = 18
         this.params.q = ''
@@ -21,7 +21,7 @@ export default class GalleryAPI{
     fetchImages() {
         const params = this.params
     
-        return axios.get(GalleryAPI.#BASE_URL,{params})
+        return axios.get(GalleryAPI.BASE_URL,{params})
         .then(r => r.data)
         .then(r => {
             this.totalHits = r.totalHits

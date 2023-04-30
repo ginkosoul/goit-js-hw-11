@@ -3,7 +3,7 @@ import SimpleLightbox from "simplelightbox";
 import GalleryAPI from "./js/galleryAPI";
 import renderGallery from "./js/gallery";
 import { Notify } from "notiflix";
-
+import throttle from "lodash.throttle";
 
 const galleryAPI = new GalleryAPI();
 const gallery = new SimpleLightbox('.gallery a',{captionsData: 'alt'});
@@ -13,9 +13,11 @@ const refs = {
     form: document.getElementById('search-form'),
     overlayIcons: document.querySelector('.gallery__overlay').innerHTML,
 }
-
+let cardHeight = 100;
+const throttleOnclick = throttle(onScroll, 300)
 
 refs.form.addEventListener('submit', onSubmit)
+// window.addEventListener('scroll',throttleOnclick)
 
 function onSubmit(e){
 
@@ -26,7 +28,7 @@ function onSubmit(e){
 
     refs.form.closest('.initial')?.classList.remove('initial')
     refs.sentinelElement.classList.add('lds-ellipsis')
-    galleryAPI.query = e.currentTarget.searchQuery.value
+    galleryAPI.q = e.currentTarget.searchQuery.value
     refs.galleryElement.innerHTML = ''
 
     galleryAPI.fetchImages().then(r=>{
@@ -38,18 +40,20 @@ function onSubmit(e){
         Notify.success(`Hooray! We found ${galleryAPI.totalHits} images.`)
         refs.galleryElement.innerHTML = renderGallery(r, refs.overlayIcons);
         gallery.refresh()
-        // const { height: cardHeight } = document
-        //     .querySelector(".gallery")
-        //     .firstElementChild.getBoundingClientRect();
-        // window.scrollBy({
-        //     top: cardHeight * 2,
-        //     behavior: "smooth",
-        // });
+
+        cardHeight = document.querySelector(".gallery").firstElementChild.getBoundingClientRect().height;
     })
     .finally(() => {
         if (!galleryAPI.isListEnd) intersectionObserver.observe(refs.sentinelElement);
     })
     intersectionObserver.unobserve(refs.sentinelElement)
+}
+
+function onScroll(){
+    window.scrollBy({
+        top: cardHeight,
+        behavior: "smooth",
+    });
 }
 
 

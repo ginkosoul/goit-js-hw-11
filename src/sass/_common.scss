@@ -1,5 +1,10 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
+:root {
+  // some colors: #2e2f42; #07051a;
+  --theme-color: #2e2f42;
+}
+
 .container {
   padding: 0 12px;
 }

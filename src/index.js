@@ -22,6 +22,7 @@ refs.form.addEventListener('submit', onSubmit)
 function onSubmit(e){
 
     e.preventDefault()
+    e.currentTarget.searchQuery.blur();
 
     if (!validate(e.currentTarget.searchQuery.value)) return
 
@@ -32,7 +33,6 @@ function onSubmit(e){
     refs.galleryElement.innerHTML = ''
 
     galleryAPI.fetchImages().then(r=>{
-        refs.sentinelElement.classList.remove('lds-ellipsis')
         if (galleryAPI.totalHits < 1) {
             Notify.failure('Sorry, there are no images matching your search query. Please try again.')
             return;
@@ -40,11 +40,16 @@ function onSubmit(e){
         Notify.success(`Hooray! We found ${galleryAPI.totalHits} images.`)
         refs.galleryElement.innerHTML = renderGallery(r, refs.overlayIcons);
         gallery.refresh()
-
+        
         cardHeight = document.querySelector(".gallery").firstElementChild.getBoundingClientRect().height;
+        if (!galleryAPI.isListEnd) intersectionObserver.observe(refs.sentinelElement);
+    })
+    .catch((e) =>{
+        Notify.failure(e.message)
     })
     .finally(() => {
-        if (!galleryAPI.isListEnd) intersectionObserver.observe(refs.sentinelElement);
+        console.log("finaly body");
+        refs.sentinelElement.classList.remove('lds-ellipsis')
     })
     intersectionObserver.unobserve(refs.sentinelElement)
 }
@@ -71,6 +76,14 @@ const intersectionObserver = new IntersectionObserver((entries) => {
         Notify.info(`Loaded new image. Total count:${galleryAPI.count}`)
         refs.galleryElement.insertAdjacentHTML('beforeend',renderGallery(r, refs.overlayIcons));
         gallery.refresh()
+    })
+    .catch((e) =>{
+        intersectionObserver.unobserve(refs.sentinelElement)
+        Notify.failure(e.message)
+    })
+    .finally(() => {
+        console.log("finaly body");
+        refs.sentinelElement.classList.remove('lds-ellipsis')
     })
     
   },{rootMargin: '200px'});

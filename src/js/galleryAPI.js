@@ -19,7 +19,7 @@ export default class GalleryAPI{
     }
 
     fetchImages() {
-        const params = this.params
+        const params = new URLSearchParams(this.params)
     
         return axios.get(GalleryAPI.BASE_URL,{params})
         .then(r => r.data)
@@ -35,8 +35,8 @@ export default class GalleryAPI{
             return r.hits
         })
         .catch((error) => {
-            console.log(error);
-            return error
+            this.isListEnd = true;
+            throw error
         })
     }
     

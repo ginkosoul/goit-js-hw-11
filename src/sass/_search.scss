@@ -1,5 +1,5 @@
 body {
-  padding-top: 94px;
+  padding-top: 88px;
 }
 
 .initial.search-area {
@@ -17,7 +17,7 @@ body {
 
 .initial .fa-btn {
   background: white;
-  color: #07051a;
+  color: var(--theme-color);
 }
 
 .search-area {
@@ -27,10 +27,10 @@ body {
   left: 0;
   padding: 0;
   margin: 0;
-  height: 78px;
+  height: 74px;
   width: 100%;
   opacity: 0.95;
-  background: #07051a;
+  background: var(--theme-color);
   transition: height 500ms var(--timing-function);
 }
 
@@ -61,6 +61,7 @@ input {
   display: block;
   font-size: 1em;
   font-weight: 700;
+  color: var(--theme-color);
   border-radius: 20px;
   padding: 0 20px;
 }
@@ -75,7 +76,7 @@ input {
   right: 0;
   border-radius: 50%;
   border: none;
-  background: #07051a;
+  background: var(--theme-color);
   color: white;
   text-align: center;
   font-size: 1.2em;
@@ -96,6 +97,6 @@ input {
 
 .initial form:hover .fa-btn,
 .initial form:focus-within .fa-btn {
-  background: #07051a;
+  background: var(--theme-color);
   color: white;
 }
